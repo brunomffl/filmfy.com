@@ -1,0 +1,125 @@
+@import url(general.css);
+@import url(hover.css);
+
+#search-response h1{
+    font-size: 2.4rem;
+    font-weight: 500;
+    max-width: 80%;
+    margin: 0 auto;
+}
+#search-response span{
+    font-weight: 700;
+    color: var(--cr-green);
+}
+
+section{
+    padding-bottom: 5rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto)); 
+    max-width: 80%;
+    margin: 0 auto;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-top: 2rem
+}
+
+.movie-card{
+    max-width: 250px;
+    position: relative;
+}
+.movie-card a{
+    text-decoration: none;
+    color: var(--cr-white);
+}
+
+.movie-card img{
+    width: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.movie-card .info-top{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.5rem 1.8rem;
+    border-radius: 1.5rem;
+    background-color: var(--cr-widgets);
+}
+.movie-card .info-bottom{
+    display: flex;
+    align-items: center;
+    gap: 1.9rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.5rem 1.8rem;
+    border-radius: 1.5rem;
+    background-color: var(--cr-widgets);
+}
+.movie-card .info-bottom img{
+    width: 20px;
+}
+
+/*pagination*/
+.pages{
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    gap: .4rem;
+}
+
+.pageNumbers{
+    display: flex;
+    gap: .5rem;
+}
+
+.pageNumbers button{
+    color: var(--cr-white);
+    outline: 0;
+    border: none;
+    background: none;
+    font-family: var(--ft-primary);
+    font-weight: 500;
+    cursor: pointer;
+}
+.pageNumbers button.selected,
+.pageIndicator span.selected{
+    font-weight: 600;
+    color: var(--cr-green);
+}
+
+.pageNumbers .pageIndicator{
+    font-weight: 600;
+    color: var(--cr-white);
+}
+
+.pageIndicator a{
+    color: var(--cr-white);
+    text-decoration: none;
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.movie-card img.loaded {
+    opacity: 1;
+}

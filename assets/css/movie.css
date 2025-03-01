@@ -1,0 +1,258 @@
+@import url(general.css);
+
+
+#movieShow{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moviePage{
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 80%;
+    min-height: 80vh;
+    gap: 8rem;
+    font-size: 1.1rem;
+}
+
+.moviePoster{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.moviePage .moviePoster img{
+    height: 100%;
+    border-radius: 15px;
+    transition: all .3s ease-out;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, .2);
+}
+
+.moviePage .moviePoster img:hover{
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, .2);
+    transform: scale(1.01) translateY(-8px);
+}
+
+.movieInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.8rem;
+    max-width: 60%;
+}
+
+.movieInfo .movieTitle{
+    align-items: center;
+    display: flex;
+    gap: 1.3rem;
+}
+
+.movieInfo .movieTitle h2{
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+.movieDesc{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.movieCategories{
+    display: flex;
+    gap: 2rem;
+}
+
+.movieCastandCrew{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-weight: 500; 
+}
+
+.movieCastandCrew span{
+    font-weight: 700;
+}
+
+.movieCategories .categorie{
+    padding: 1rem 1.5rem;
+    color: var(--cr-green);
+    border: 1px solid var(--cr-green);
+    border-radius: 1rem;
+}
+
+/*imdb graphic*/
+.IMDBgraphic{
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: transparent;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.meter{
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(
+        var(--cr-green) 0%, transparent 0%
+    );
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meter::before{
+    content: "";
+    width: 80%;
+    height: 80%;
+    background-color: var(--cr-black);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.imdbscore{
+    position: absolute;
+    color: var(--cr-white);
+}
+
+/*providers*/
+.providers{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.providers .providers-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.provider-banners{
+    display: flex;
+    gap: 2rem;
+}
+
+.provider-banners .section-title{
+    color: var(--cr-green);
+    font-style: italic;
+}
+
+.provider-banners .provider-card a{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: .8rem;
+    padding: .8rem 1.2rem;
+    border: 1px solid var(--cr-green);
+    border-radius: 1rem;
+    transition: transform .3s ease;
+}
+
+.provider-banners .provider-card a:hover{
+    transform: scale(1.02);
+}
+
+.provider-card .provider-name{
+    color: var(--cr-green);
+    font-weight: 600;
+    transition: filter .3s ease;
+}
+.provider-banners .provider-logo img{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.streaming-options,
+.rent-options,
+.buy-options{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nooptions{
+    word-wrap: break-word;
+    width: 190px;
+    line-height: 1.8rem;
+}
+
+.rentnooptions span,
+.buynooptions span,
+.streamingnooptions span
+{
+    font-weight: 700;
+}
+
+/*related movies*/
+#relatedMovies{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+#relatedMovies h2 span{
+    font-weight: 700;
+    color: var(--cr-green);
+}
+
+.movieList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.movieCard{
+    height: 100%;
+    display: flex;
+}
+
+.template a{
+    text-decoration: none;
+}
+
+.template{
+    position: relative;
+    display: flex;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.template img{
+    width: 200px;
+    border-radius: 10px;
+}
+
+.hover{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    color: var(--cr-white);
+    align-items: center;
+    border-radius: 10px;
+    transition: opacity 0.3s ease
+
+}
+
+.title{
+    position: absolute;
+    bottom: 4rem;
+    font-size: 2.5rem;
+    width: 100%;
+    padding-left: 1rem;
+    word-wrap: break-word;
+}
