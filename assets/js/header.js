@@ -32,6 +32,18 @@ class Header extends HTMLElement {
                             <a href="#">Sign in</a>
                         </div>
                     </div>
+                    <div class="phone-menu">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    <nav class="phone-links visivel">
+                        <ul>
+                            <li><a href="index.html"><img src="assets/imgs/home-icon.png" alt="Home"></a></li>
+                            <li><a href="index.html"><img src="assets/imgs/profile-icon.png" alt="Home"></a></li>
+                            <li><a href="index.html"><img src="assets/imgs/contact-icon.png" alt="Home"></a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <div class="search-bar">

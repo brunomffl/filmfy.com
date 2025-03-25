@@ -39,6 +39,7 @@ body {
     /*border-bottom-right-radius: 1rem;
     border-bottom-left-radius: 1rem;*/
     margin-bottom: 5rem;
+    z-index: 9;
 }
 
 .header-content {

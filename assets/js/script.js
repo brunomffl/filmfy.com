@@ -2,7 +2,12 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import { cardEffect } from './util.js';
 
-/* Requisição para as abas de filmes na página inicial */
+let phoneMenu = document.querySelector('.phone-menu');
+let phoneLinks = document.querySelector('.phone-links');
+phoneMenu.addEventListener('click', () => {
+    phoneLinks.classList.toggle('visivel');
+})
+
 async function getSections() {
     const apiKey = '497e95504196cfbab77ba149718eaa94';
     const endpoints = {
@@ -32,15 +37,11 @@ async function getSections() {
 
 async function createCards(cards, containerId) {
     const container = document.querySelector(`#${containerId} .swiper-wrapper`);
-    let slide;
 
-    for (const [index, card] of cards.entries()) {
-        // Crie um novo slide a cada 4 cards
-        if (index % 4 === 0) {
-            slide = document.createElement('div');
-            slide.classList.add('swiper-slide');
-            container.append(slide);
-        }
+    cards.forEach(async (card) => {
+        // Crie um slide para cada card
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
 
         // Crie o card
         const movieCard = document.createElement('div');
@@ -81,6 +82,8 @@ async function createCards(cards, containerId) {
         movieCard.append(movieLink);
 
         slide.appendChild(movieCard);
+        container.appendChild(slide);
+
         cardEffect(movieCard, hover);
 
         // Atualize o link com o IMDb ID
@@ -88,7 +91,7 @@ async function createCards(cards, containerId) {
         if (imdbId) {
             movieLink.href = `movie.html?id=${imdbId}`;
         }
-    }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -97,13 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.entries(sections).forEach(([key, cards]) => {
                 createCards(cards, key);
 
+                // Inicialize o Swiper para a seção
                 new Swiper(`#${key} .mySwiper`, {
-                    slidesPerView: 1,
+                    slidesPerView: 4, // Padrão: 4 cards por slide
                     grabCursor: true,
                     loop: true,
                     navigation: {
                         nextEl: `#${key} .swiper-button-next`,
                         prevEl: `#${key} .swiper-button-prev`,
+                    },
+                    breakpoints: {
+                        1285: {
+                            slidesPerView: 4,
+                        },
+                        970: {
+                            slidesPerView: 3,
+                        },
+                        925: {
+                            slidesPerView: 2,
+                        },
+                        0: {
+                            slidesPerView: 1,
+                        }
                     },
                 });
             });
@@ -118,9 +136,9 @@ async function getImdbId(tmdbId) {
     try {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/external_ids?api_key=${tmdbApiKey}`);
         const data = await response.json();
-        return data.imdb_id; // Retorna o IMDb ID
+        return data.imdb_id;
     } catch (error) {
         console.error(`Erro ao buscar IMDb ID para TMDB ID ${tmdbId}:`, error);
-        return null; // Retorna null em caso de erro
+        return null;
     }
 }
