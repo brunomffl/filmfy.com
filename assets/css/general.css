@@ -254,7 +254,7 @@ body {
 }
 
 .search-bar{
-    z-index: 1;
+    z-index: 9;
 }
 
 .search-bar .right .search-menu{

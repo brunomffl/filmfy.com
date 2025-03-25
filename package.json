@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vite"
   },
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/brunomffl/filmfy.com#readme",
   "devDependencies": {
     "vite": "^6.2.3"
+  },
+  "dependencies": {
+    "swiper": "^11.2.6"
   }
 }
