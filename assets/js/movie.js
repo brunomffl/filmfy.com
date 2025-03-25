@@ -1,4 +1,5 @@
 import { cardEffect } from './util.js'
+import { mobileMenu } from './util.js';
 
 const url = new URLSearchParams(window.location.search);
 const movieId = url.get('id');
@@ -229,4 +230,6 @@ async function getImdbId(id){
 
     return imdbId;
 
-} 
+};
+
+mobileMenu();

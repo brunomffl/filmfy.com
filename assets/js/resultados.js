@@ -1,4 +1,5 @@
 import { cardEffect } from './util.js'
+import { mobileMenu } from './util.js';
 
 const apiKey = 'c6f8e6b1';
 const pesquisa = localStorage.getItem('pesquisa');
@@ -178,3 +179,5 @@ function paginate(json){
     pageIndicator.append(dotcom, 'com');
 
 }
+
+mobileMenu();

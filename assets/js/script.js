@@ -1,12 +1,8 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import { cardEffect } from './util.js';
+import { mobileMenu } from './util.js';
 
-let phoneMenu = document.querySelector('.phone-menu');
-let phoneLinks = document.querySelector('.phone-links');
-phoneMenu.addEventListener('click', () => {
-    phoneLinks.classList.toggle('visivel');
-})
 
 async function getSections() {
     const apiKey = '497e95504196cfbab77ba149718eaa94';
@@ -154,3 +150,5 @@ async function getImdbRating(imdbID, rating){
         rating.innerHTML = `No rating ⭐`;
     }
 }
+
+mobileMenu();
