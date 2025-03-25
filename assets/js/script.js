@@ -86,11 +86,11 @@ async function createCards(cards, containerId) {
 
         cardEffect(movieCard, hover);
 
-        // Atualize o link com o IMDb ID
         const imdbId = await getImdbId(card.id);
         if (imdbId) {
             movieLink.href = `movie.html?id=${imdbId}`;
         }
+        getImdbRating(imdbId, rating);
     });
 }
 
@@ -140,5 +140,17 @@ async function getImdbId(tmdbId) {
     } catch (error) {
         console.error(`Erro ao buscar IMDb ID para TMDB ID ${tmdbId}:`, error);
         return null;
+    }
+}
+
+async function getImdbRating(imdbID, rating){
+    const apiKey = 'c6f8e6b1';
+
+    try{
+        const response = await fetch (`https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`);
+        const data = await response.json();
+        rating.innerHTML = `${data.Ratings[0].Value} ⭐`
+    } catch (error){
+        rating.innerHTML = `No rating ⭐`;
     }
 }

@@ -104,10 +104,8 @@ function loadMovies(json) {
         paginate(json);
         moviesList.append(documentFragment);
 
-        // Chama o lazyLoading logo após inserir os elementos
         lazyLoading();
 
-        // Atualiza as imagens conforme o usuário der scroll
         window.onscroll = () => {
             lazyLoading();
         }
@@ -119,31 +117,13 @@ function loadMovies(json) {
     }
 }
 
-// Outras funções (getIMDBrating, paginate, etc.) permanecem inalteradas.
-
-
-// função para adicionar efeito de hover no card
-/*function cardEffect(card, hover) {
-    card.addEventListener('mouseover', () => {
-        hover.style.opacity = 1;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        hover.style.opacity = 0;
-    });
-}*/
-
-// função que busca o IMDb rating para cada filme
-async function getIMDBrating(imdbID, ratingEl) {
+export async function getIMDBrating(imdbID, ratingEl) {
     try {
         let response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`);
         let json = await response.json();
 
-        // Encontrar o rating do IMDb dentro do array Ratings
         let imdbRating = json.Ratings.find(r => r.Source === "Internet Movie Database");
 
-        // Atualizar o conteúdo do elemento de rating
-        //se tiver rating, ele coloca o valor do rating, se não tiver ele coloca N/A
         ratingEl.innerHTML = imdbRating ? `${imdbRating.Value} ⭐` : "N/A ⭐";
     } catch (error) {
         console.error("Erro ao buscar rating:", error);

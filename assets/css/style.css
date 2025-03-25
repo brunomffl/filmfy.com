@@ -1,4 +1,5 @@
 @import url(general.css);
+@import url(hover.css);
 
 .swiper {
     width: 100%;
@@ -27,29 +28,6 @@
     height: auto;
     object-fit: cover;
     border-radius: 15px;
-}
-
-.hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.movie-card:hover .hover {
-    opacity: 1;
-}
-
-.hover-info {
-    text-align: center;
-    color: var(--cr-white);
 }
 
 #nowPlaying,
@@ -108,6 +86,11 @@
 
 .phone-links img{
     width: 35px;
+}
+
+.movie-card a{
+    text-decoration: none;
+    color: var(--cr-white); 
 }
 
 /*responsividade*/
