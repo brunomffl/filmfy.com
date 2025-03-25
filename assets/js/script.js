@@ -2,8 +2,6 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import { cardEffect } from './util.js';
 
-const apiKey = '497e95504196cfbab77ba149718eaa94';
-
 /* Requisição para as abas de filmes na página inicial */
 async function getSections() {
     const apiKey = '497e95504196cfbab77ba149718eaa94';
@@ -32,22 +30,24 @@ async function getSections() {
     }
 }
 
-function createCards(cards, containerId) {
+async function createCards(cards, containerId) {
     const container = document.querySelector(`#${containerId} .swiper-wrapper`);
     let slide;
 
-    cards.forEach((card, index) => {
+    for (const [index, card] of cards.entries()) {
+        // Crie um novo slide a cada 4 cards
         if (index % 4 === 0) {
             slide = document.createElement('div');
             slide.classList.add('swiper-slide');
             container.append(slide);
         }
 
+        // Crie o card
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
 
         const movieLink = document.createElement('a');
-        movieLink.href = `movie.html?id=${card.id}`;
+        movieLink.href = '#'; // Link temporário
 
         const moviePoster = document.createElement('img');
         moviePoster.setAttribute('src', `https://image.tmdb.org/t/p/original${card.poster_path}`);
@@ -82,7 +82,13 @@ function createCards(cards, containerId) {
 
         slide.appendChild(movieCard);
         cardEffect(movieCard, hover);
-    });
+
+        // Atualize o link com o IMDb ID
+        const imdbId = await getImdbId(card.id);
+        if (imdbId) {
+            movieLink.href = `movie.html?id=${imdbId}`;
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,3 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+async function getImdbId(tmdbId) {
+    const tmdbApiKey = '497e95504196cfbab77ba149718eaa94';
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/external_ids?api_key=${tmdbApiKey}`);
+        const data = await response.json();
+        return data.imdb_id; // Retorna o IMDb ID
+    } catch (error) {
+        console.error(`Erro ao buscar IMDb ID para TMDB ID ${tmdbId}:`, error);
+        return null; // Retorna null em caso de erro
+    }
+}
